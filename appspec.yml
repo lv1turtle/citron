@@ -1,0 +1,15 @@
+version: 0.0
+os: linux
+
+files:
+  - source:  / # Github에 업로드한 모든 파일이
+    destination: /home/ec2-user/citron # 이 위치로 복사된다.
+    overwrite: yes
+
+hooks:
+  AfterInstall: # 설치 후 실행할 명령어
+    - location: scripts/stop.sh # stop.sh 실행
+      timeout: 60
+  ApplicationStart:
+    - location: scripts/start.sh # start.sh 실행
+      timeout: 60
